@@ -49,7 +49,6 @@ const sections: Section[] = [
     accent: "#16a34a",
     background: "#f0fdf4",
     items: [
-      "Verify processors power",
       "Verify signal on all displays",
       "Run full screen test content",
       "Check color / brightness / mapping",
