@@ -118,7 +118,7 @@ export default function HomePage() {
         setChecked(JSON.parse(saved) as CheckedState);
       }
     } catch {
-      // ignore local storage read errors
+      // ignore storage read errors
     }
     setIsLoaded(true);
   }, []);
@@ -129,9 +129,9 @@ export default function HomePage() {
     try {
       window.localStorage.setItem(storageKey, JSON.stringify(checked));
     } catch {
-      // ignore local storage write errors
+      // ignore storage write errors
     }
-  }, [checked, isLoaded]);
+  }, [checked, isLoaded, storageKey]);
 
   useEffect(() => {
     const handler = (event: Event) => {
@@ -144,7 +144,8 @@ export default function HomePage() {
   }, []);
 
   const checkedCount = Object.values(checked).filter(Boolean).length;
-  const progress = Math.round((checkedCount / totalItems) * 100);
+  const progress =
+    totalItems === 0 ? 0 : Math.round((checkedCount / totalItems) * 100);
 
   const toggle = (key: string) => {
     setChecked((current) => ({
@@ -158,7 +159,7 @@ export default function HomePage() {
     try {
       window.localStorage.removeItem(storageKey);
     } catch {
-      // ignore local storage delete errors
+      // ignore storage delete errors
     }
   };
 
@@ -189,7 +190,9 @@ export default function HomePage() {
           <div>
             <p className="eyebrow">ANC Field Tech</p>
             <h1>Event Day Checklist</h1>
-            <p className="subtext">Progress saves automatically on this device</p>
+            <p className="subtext">
+              Progress saves automatically on this device.
+            </p>
           </div>
           <button className="resetButton" onClick={resetAll}>
             Reset
@@ -209,7 +212,7 @@ export default function HomePage() {
           <p className="progressText">{progress}% complete</p>
         </section>
 
-        <section className="progressCard">
+        <section className="progressCard" style={{ marginTop: "14px" }}>
           <div className="progressHeader">
             <span>Install on phone</span>
             <button className="resetButton" onClick={installApp}>
@@ -219,7 +222,9 @@ export default function HomePage() {
           <p className="progressText">
             Use it like an app from the home screen.
           </p>
-          {installMessage ? <p className="progressText">{installMessage}</p> : null}
+          {installMessage ? (
+            <p className="progressText">{installMessage}</p>
+          ) : null}
         </section>
 
         <div className="sectionList">
