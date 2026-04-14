@@ -17,7 +17,7 @@ export default function ANCFieldTechMobileChecklist() {
       color: "border-blue-500",
       bg: "bg-blue-50",
       items: [
-        "Boot primary + backup renders",
+        "Restart primary + backup renders software",
         "Verify LiveSync (UI / Render / DataCollector)",
         "Run full screen + game content",
         "Confirm stats/data working",
@@ -32,7 +32,7 @@ export default function ANCFieldTechMobileChecklist() {
       color: "border-green-500",
       bg: "bg-green-50",
       items: [
-        "Power processors + switchers",
+        "Verify processors power",
         "Verify signal on all displays",
         "Run full screen test content",
         "Check color / brightness / mapping",
